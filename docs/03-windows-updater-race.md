@@ -1,7 +1,7 @@
 # 03. 동시에 실행한 런처 5개가 업데이터 임시 파일에서 충돌
 
 - **프로젝트**: kitae1645/mafia42_test
-- **원본**: PR [#153](https://github.com/kitae1645/mafia42_test/pull/153) (머지 2026-07-30)
+- **원본**: PR #153 (머지 2026-07-30)
 - **스택**: Windows 배치 런처(`mafia42_5x.bat`, `mafia42_6x.bat`), PowerShell 5.1, Electron 앱 자동 업데이터
 - **분류**: 동시성
 - **CS 접점**: check-then-act(TOCTOU) 경쟁, 프로세스 간 상호배제, 크로스 세션 뮤텍스 네임스페이스, fail-closed.

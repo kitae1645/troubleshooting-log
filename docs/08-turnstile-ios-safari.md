@@ -1,7 +1,7 @@
 # 08. iPhone Safari에서만 가입 캡차가 멈춤
 
 - **프로젝트**: kitae1645/mafia42_test
-- **원본**: PR [#148](https://github.com/kitae1645/mafia42_test/pull/148) (머지 2026-07-22)
+- **원본**: PR #148 (머지 2026-07-22)
 - **스택**: Python 3.12 웹서버, Cloudflare Turnstile, 바닐라 JS, iPhone Safari(WebKit)
 - **분류**: 제3자 스크립트 / 브라우저 제약
 - **CS 접점**: 외부 스크립트의 콜백 계약은 우리가 보장할 수 없다. 콜백을 신뢰하지 않고 상태를 관찰하는 설계가 필요하고, 우회 경로를 만들면 서버가 다시 검증해야 한다.
@@ -51,6 +51,10 @@ iPhone Safari에서 Turnstile 스크립트는 로드되는데 `onload` 콜백이
 | `test_signup_polls_when_turnstile_onload_callback_is_missing` | 콜백이 드롭된 상황에서 폴링이 복구하는가 |
 | `test_ios_safari_reports_failed_turnstile_for_server_fallback` | iOS Safari UA + 실패 카운터로 폴백 경로가 동작하는가 |
 | 기존 가입/인증 테스트 | 폴백 조건이 아닌 요청은 여전히 차단되는가 |
+
+## 후속 변경
+
+이 폴백은 처음엔 iOS Safari로 한정했지만, 이후 **모든 브라우저**로 넓혔습니다. 캡차가 아예 동작하지 않는 환경(확장 프로그램 간섭, 사내망 프록시 등)에서 가입 자체가 막히는 쪽이 더 큰 손실이라고 판단했기 때문입니다. 남용 방지는 폴백 전용 실패 카운터, IP별 시간당 한도, 서버 전체 시간당 한도의 3중 제한으로 옮겼습니다.
 
 ## 재발 방지
 

@@ -1,7 +1,7 @@
 # 02. SYSTEM 계정 배포가 스크립트 실행 전에 거부됨
 
 - **프로젝트**: kitae1645/maple_megaphone
-- **원본**: PR [#2](https://github.com/kitae1645/maple_megaphone/pull/2) (머지 2026-10-31)
+- **원본**: PR #2 (머지 2026-10-31)
 - **스택**: GitHub Actions self-hosted runner (`runs-on: [self-hosted, Windows, X64, ...]`), PowerShell, `tools\deploy\deploy.ps1`
 - **분류**: OS 권한·정책
 - **CS 접점**: 같은 프로그램이라도 "누가 실행하는가"에 따라 적용되는 정책이 다르다. 실행 정책은 사용자·머신·프로세스 범위를 가진다.

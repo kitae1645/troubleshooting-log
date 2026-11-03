@@ -1,7 +1,7 @@
 # 05. CI가 구 Alembic 리비전을 검사해 마이그레이션마다 깨짐
 
 - **프로젝트**: kitae1645/nara-bid-predictor
-- **원본**: PR [#158](https://github.com/kitae1645/nara-bid-predictor/pull/158) (머지 2026-09-25)
+- **원본**: PR #158 (머지 2026-09-25)
 - **스택**: GitHub Actions, PostgreSQL 17.10, Alembic, Docker Compose(임시 CI 스택), pytest
 - **분류**: CI / 스키마 이력
 - **CS 접점**: 스키마 마이그레이션 이력은 선형 구조이고, 테스트가 그 특정 노드를 하드코딩하면 이력이 자랄 때마다 깨진다. 불변식은 "head가 하나"이지 "리비전 X"가 아니다.

@@ -1,7 +1,7 @@
 # 01. GitHub Actions 로그에서 Windows 명령 출력이 `?????`로 깨짐
 
 - **프로젝트**: kitae1645/mafia42_test
-- **원본**: PR [#121](https://github.com/kitae1645/mafia42_test/pull/121) (머지 2026-06-28)
+- **원본**: PR #121 (머지 2026-06-28)
 - **스택**: GitHub Actions → SSH → Windows Server 2022 (ko-KR), `schtasks` / `tasklist` / `git`
 - **분류**: 문자 인코딩
 - **CS 접점**: 프로세스 사이를 오가는 건 텍스트가 아니라 바이트다. 인코딩은 각 경계에서 명시적으로 합의되어야 한다.
@@ -31,8 +31,8 @@
 
 ## 조사
 
-1. 실패한 런(`#28318355040`)의 스텝 원문을 확인 — 깨진 문자열 패턴이 `?`로 균일하게 치환된 형태. 바이트가 유실된 게 아니라 **디코딩이 틀린** 전형적인 형태입니다.
-2. 두 호스트(parkmiso, parkmiso-test) 모두 한국어 Windows. `chcp`를 직접 SSH로 실행해 기본 코드페이지가 `949`임을 확인.
+1. 실패한 런의 스텝 원문을 확인 — 깨진 문자열 패턴이 `?`로 균일하게 치환된 형태. 바이트가 유실된 게 아니라 **디코딩이 틀린** 전형적인 형태입니다.
+2. 두 호스트(dev, prod) 모두 한국어 Windows. `chcp`를 직접 SSH로 실행해 기본 코드페이지가 `949`임을 확인.
 3. 애플리케이션 로그(파이썬 쪽)는 한글이 정상이었습니다. 파이썬이 쓰는 파일·stdout은 UTF-8로 명시되어 있었고, 깨진 건 **cmd.exe 내장 명령의 콘솔 출력**뿐이었습니다. 이걸로 "애플리케이션 인코딩 문제" 가설을 버렸습니다.
 
 ## 원인
@@ -46,8 +46,8 @@ SSH 세션은 바이트 스트림입니다. 원격에서 `schtasks`가 내는 �
 모든 SSH 원격 명령 앞에 코드페이지 전환을 붙입니다. 5개 스텝 전부.
 
 ```diff
-- 'cd C:\Users\admin\mafia42_test && git fetch origin && ...'
-+ 'chcp 65001 >nul & cd C:\Users\admin\mafia42_test && git fetch origin && ...'
+- 'cd C:\app && git fetch origin && ...'
++ 'chcp 65001 >nul & cd C:\app && git fetch origin && ...'
 ```
 
 ```diff

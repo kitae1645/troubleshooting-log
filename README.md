@@ -6,21 +6,22 @@ kitae1645 조직에서 실제로 돌리는 프로젝트를 운영하면서 만�
 
 - **범위**: 인코딩, OS 권한·정책, 동시성, 크로스플랫폼 CLI 호환성, CI 버전 드리프트, 외부 데이터 신뢰 경계, 공유 상태 집계, 브라우저·제3자 스크립트 제약
 - **형식**: 케이스당 1문서(`docs/`), 템플릿은 [`templates/case-study.md`](templates/case-study.md)
-- **근거**: 각 문서 상단의 PR 링크가 원본입니다. 본문은 그 PR과 머지 커밋에서 확인한 내용만 씁니다.
+- **근거**: 각 문서 상단에 원본 PR 번호를 적습니다. 원본 프로젝트 레포는 비공개이므로 PR 링크는 열리지 않고, 본문은 그 PR·머지 커밋·배포 로그에서 확인한 내용만 씁니다.
+- **익명화**: 호스트 이름, 절대 경로, 서비스 IP, 시크릿 이름은 일반화했습니다. 기술적 원인과 수치는 그대로입니다.
 
 ## 케이스 인덱스
 
 | # | 증상 | CS 접점 | 프로젝트 | 원본 |
 |---|------|---------|---------|------|
-| 01 | [Actions 로그에서 Windows 명령 출력이 `?????`로 깨짐](docs/01-windows-cp949-mojibake.md) | 문자 인코딩 — 바이트와 텍스트의 경계 | mafia42_test | [#121](https://github.com/kitae1645/mafia42_test/pull/121) |
-| 02 | [SYSTEM 계정 배포가 스크립트 실행 전에 거부됨](docs/02-windows-system-executionpolicy.md) | 권한 주체와 실행 정책의 범위 | maple_megaphone | [#2](https://github.com/kitae1645/maple_megaphone/pull/2) |
-| 03 | [동시 실행한 런처가 업데이터 임시 파일에서 충돌](docs/03-windows-updater-race.md) | 경쟁 상태, check-then-act, 상호배제 | mafia42_test | [#153](https://github.com/kitae1645/mafia42_test/pull/153) |
-| 04 | [macOS에서만 TLS 검증 테스트가 실패](docs/04-libressl-openssl-portability.md) | "같은 이름, 다른 구현" — CLI 호환성 | nara-bid-predictor | [#118](https://github.com/kitae1645/nara-bid-predictor/pull/118) |
-| 05 | [CI가 구 Alembic 리비전을 검사해 마이그레이션마다 깨짐](docs/05-ci-postgres-alembic-drift.md) | 스키마 이력의 선형성, 계약 테스트 | nara-bid-predictor | [#158](https://github.com/kitae1645/nara-bid-predictor/pull/158) |
-| 06 | [공공 API의 값 하나가 수집 배치 전체를 죽임](docs/06-dirty-api-payload-batch.md) | 장애 격리 — 배치 원자성 vs 부분 성공 | nara-bid-predictor | [#141](https://github.com/kitae1645/nara-bid-predictor/pull/141) |
-| 07 | [실제로 연결된 채널이 "연결 끊김"으로 표시됨](docs/07-websocket-channel-refcount.md) | 공유 상태, 참조 카운팅, 낡은 식별자 | mafia42_test | [#130](https://github.com/kitae1645/mafia42_test/pull/130) |
-| 08 | [iPhone Safari에서만 가입 캡차가 멈춤](docs/08-turnstile-ios-safari.md) | 제3자 스크립트 계약 불신, 서버측 검증 | mafia42_test | [#148](https://github.com/kitae1645/mafia42_test/pull/148) |
-| 09 | [브라우저에서만 버튼이 조용히 실패 (`ERR_BLOCKED_BY_CLIENT`)](docs/09-brave-shields-path.md) | 경로 문자열이 필터 시그니처가 되는 경우 | tagVault | [#1](https://github.com/kitae1645/tagVault/pull/1) |
+| 01 | [Actions 로그에서 Windows 명령 출력이 `?????`로 깨짐](docs/01-windows-cp949-mojibake.md) | 문자 인코딩 — 바이트와 텍스트의 경계 | mafia42_test | #121 |
+| 02 | [SYSTEM 계정 배포가 스크립트 실행 전에 거부됨](docs/02-windows-system-executionpolicy.md) | 권한 주체와 실행 정책의 범위 | maple_megaphone | #2 |
+| 03 | [동시 실행한 런처가 업데이터 임시 파일에서 충돌](docs/03-windows-updater-race.md) | 경쟁 상태, check-then-act, 상호배제 | mafia42_test | #153 |
+| 04 | [macOS에서만 TLS 검증 테스트가 실패](docs/04-libressl-openssl-portability.md) | "같은 이름, 다른 구현" — CLI 호환성 | nara-bid-predictor | #118 |
+| 05 | [CI가 구 Alembic 리비전을 검사해 마이그레이션마다 깨짐](docs/05-ci-postgres-alembic-drift.md) | 스키마 이력의 선형성, 계약 테스트 | nara-bid-predictor | #158 |
+| 06 | [공공 API의 값 하나가 수집 배치 전체를 죽임](docs/06-dirty-api-payload-batch.md) | 장애 격리 — 배치 원자성 vs 부분 성공 | nara-bid-predictor | #141 |
+| 07 | [실제로 연결된 채널이 "연결 끊김"으로 표시됨](docs/07-websocket-channel-refcount.md) | 공유 상태, 참조 카운팅, 낡은 식별자 | mafia42_test | #130 |
+| 08 | [iPhone Safari에서만 가입 캡차가 멈춤](docs/08-turnstile-ios-safari.md) | 제3자 스크립트 계약 불신, 서버측 검증 | mafia42_test | #148 |
+| 09 | [브라우저에서만 버튼이 조용히 실패 (`ERR_BLOCKED_BY_CLIENT`)](docs/09-brave-shields-path.md) | 경로 문자열이 필터 시그니처가 되는 경우 | tagVault | #1 |
 
 ## 여러 케이스에서 반복된 것
 
@@ -37,6 +38,13 @@ kitae1645 조직에서 실제로 돌리는 프로젝트를 운영하면서 만�
 - 검증 섹션에는 실제로 돌린 명령과 결과 수치를 남깁니다.
 - 마지막 섹션은 그 케이스를 떠나 일반화한 문장 1~3개로 끝냅니다.
 
-## 공개 범위
+## 익명화 원칙
 
-이 저장소는 비공개입니다. 원본 프로젝트가 비공개이고, 배포 경로·호스트 구성·보안 완화 로직이 포함되어 있습니다. 공개용으로 낼 때는 해당 부분을 지우고 "환경: Windows Server, 한국어 로캘" 수준으로 일반화해야 합니다.
+원본 프로젝트는 비공개이고, 배포 경로·호스트 구성·보안 완화 로직이 들어 있습니다. 공개판에서는 다음만 바꿨고 기술적 내용은 손대지 않았습니다.
+
+- 호스트 이름 → `dev` / `prod`
+- 절대 경로 → `C:\app` 같은 일반 경로
+- 서비스 IP·인스턴스 ID·실행 로그 링크 → 생략
+- 시크릿·변수 이름 → 언급하지 않음
+
+케이스에 등장하는 제품·서비스 이름은 실제 이름 그대로입니다. 외부에 공개된 서비스이고, 무엇을 다뤘는지가 문맥의 일부이기 때문입니다.

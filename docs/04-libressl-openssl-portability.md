@@ -1,7 +1,7 @@
 # 04. macOS에서만 TLS 검증 테스트가 실패 — `openssl`이라는 이름의 함정
 
 - **프로젝트**: kitae1645/nara-bid-predictor
-- **원본**: PR [#118](https://github.com/kitae1645/nara-bid-predictor/pull/118) (머지 2026-08-07, 이슈 #105)
+- **원본**: PR #118 (머지 2026-08-07, 이슈 #105)
 - **스택**: Python 3.12, Docker Compose, `infra/postgres/validate-tls.sh`, OpenSSL/LibreSSL, pytest
 - **분류**: 크로스플랫폼 호환성
 - **CS 접점**: 실행 파일의 이름이 같다고 인터페이스가 같은 것은 아니다. CLI 인자도 API 표면의 일부다.
